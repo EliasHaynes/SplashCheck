@@ -1,23 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios'
+
 
 function App() {
+
+
+  const APP_TOKEN = process.env.REACT_APP_APP_TOKEN  
+  // const config = {
+  //   headers: {
+  //     'X-App_Token': APP_TOKEN
+  //   }
+  // }
+  const handleClick = async () => {
+   const response =  await axios.get(`https://data.austintexas.gov/resource/xaxa-886r.json`, {headers: {'X-APP-TOKEN' :APP_TOKEN}})
+   console.log("response:", response.data)
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>
+        <button onClick={handleClick} >Test API Endpoint</button>
+      </div>
     </div>
   );
 }
